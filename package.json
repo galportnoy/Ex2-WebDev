@@ -11,6 +11,16 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galportnoy/Ex2-WebDev.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/galportnoy/Ex2-WebDev/issues"
+  },
+  "homepage": "https://github.com/galportnoy/Ex2-WebDev#readme"
 }
