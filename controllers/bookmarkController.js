@@ -34,7 +34,7 @@ exports.addBookmark = async (req, res) => {
 
         // save the bookmark
         const savedBookmark = await bookmark.save();
-        res.status(200).json(savedBookmark);
+        res.status(201).json(savedBookmark);
     } catch (err) {
         res.status(500).json({ error: 'Failed to add bookmark', details: err.message });
     }
@@ -80,6 +80,7 @@ exports.getBookmark = async (req, res) => {
     }
 }
 
+// update a bookmark
 exports.updateBookmark = async (req, res) => {
     const bookmarkId = req.params.id;
     const { title, url, description, category_id } = req.body;

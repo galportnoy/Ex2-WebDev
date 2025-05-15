@@ -22,7 +22,7 @@ exports.addCategory = async (req, res) => {
         const category = new Category({ name: category_name });
         const savedCategory = await category.save();
 
-        res.status(200).json(savedCategory);
+        res.status(201).json(savedCategory);
     } catch (err) {
         res.status(500).json({ error: 'Failed to add category', details: err.message });
     }
