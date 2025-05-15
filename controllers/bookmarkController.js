@@ -59,7 +59,53 @@ exports.deleteBookmark = async (req, res) => {
     }
 }
 
-exports.updateBookmark = async (req, res) => {
-
+// get a bookmark
+exports.getBookmark = async (req, res) => {
+    const categoryId = req.params.id;
+    try {
+        // Check if the bookmark exists
+        const category = await Category.findOne({ _id: categoryId });
+        if (!category) {
+            return res.status(404).json({ error: 'Category not found' });
+        }
+        // Get the bookmarks for the category
+        const bookmarks = await Bookmark.find({ category_id: categoryId }); 
+        if (bookmarks.length === 0) {
+            return res.status(404).json({ error: 'No bookmarks found for this category' });
+        }
+        res.status(200).json(bookmarks);
+    }
+    catch (err) {
+        res.status(500).json({ error: 'Failed to fetch bookmark', details: err.message });
+    }
 }
 
+exports.updateBookmark = async (req, res) => {
+    const bookmarkId = req.params.id;
+    const { title, url, description, category_id } = req.body;
+
+    try {
+        // Check if the bookmark exists
+        const bookmark = await Bookmark.findById(bookmarkId);
+        if (!bookmark) {
+            return res.status(404).json({ error: 'Bookmark not found' });
+        }
+
+        // Check if the category exists
+        const category = await Category.findById(category_id);
+        if (!category) {
+            return res.status(400).json({ error: 'Category not found' });
+        }
+
+        // Update the bookmark
+        bookmark.title = title;
+        bookmark.url = url;
+        bookmark.description = description;
+        bookmark.category_id = category_id;
+
+        const updatedBookmark = await bookmark.save();
+        res.status(200).json(updatedBookmark);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to update bookmark', details: err.message });
+    }
+}
