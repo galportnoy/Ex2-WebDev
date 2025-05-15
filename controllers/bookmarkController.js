@@ -80,6 +80,7 @@ exports.getBookmark = async (req, res) => {
     }
 }
 
+// update a bookmark
 exports.updateBookmark = async (req, res) => {
     const bookmarkId = req.params.id;
     const { title, url, description, category_id } = req.body;
