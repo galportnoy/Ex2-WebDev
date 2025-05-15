@@ -24,7 +24,7 @@ exports.addBookmark = async (req, res) => {
         if (!category) {
             return res.status(400).json({ error: 'Category not found' });
         }
-
+        
         const bookmark = new Bookmark({
             title,
             url,
@@ -39,3 +39,27 @@ exports.addBookmark = async (req, res) => {
         res.status(500).json({ error: 'Failed to add bookmark', details: err.message });
     }
 }
+
+// delete a bookmark
+exports.deleteBookmark = async (req, res) => {
+    const bookmarkId = req.params.id;
+    try {
+        // Check if the bookmark exists
+        const bookmark = await Bookmark.findById({_id: bookmarkId});
+
+        if (!bookmark) {
+            return res.status(404).json({ error: 'Bookmark not found' });
+        }  
+        // Delete the bookmark
+        await Bookmark.deleteOne({ _id: bookmarkId });
+        res.status(200).json({ message: 'Bookmark deleted successfully' });
+    }
+    catch (err) {
+        res.status(500).json({ error: 'Failed to delete bookmark', details: err.message });
+    }
+}
+
+exports.updateBookmark = async (req, res) => {
+
+}
+

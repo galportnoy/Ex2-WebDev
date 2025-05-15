@@ -1,7 +1,6 @@
 {
   "name": "ex2",
   "version": "1.0.0",
-  "description": "",
   "license": "ISC",
   "author": "",
   "type": "commonjs",
@@ -12,8 +11,10 @@
   },
   "dependencies": {
     "express": "^5.1.0",
-    "mongojs": "^2.6.0",
+    "install": "^0.13.0",
+    "mongojs": "^3.1.0",
     "mongoose": "^8.14.3",
+    "node.js": "^0.0.1-security",
     "nodemon": "^3.1.10"
   },
   "repository": {
@@ -24,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/galportnoy/Ex2-WebDev/issues"
   },
-  "homepage": "https://github.com/galportnoy/Ex2-WebDev#readme"
+  "homepage": "https://github.com/galportnoy/Ex2-WebDev#readme",
+  "description": ""
 }
